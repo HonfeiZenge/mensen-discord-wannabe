@@ -1,0 +1,164 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>Discord Wannabe</title>
+</head>
+<body>
+    
+    <main>
+
+        <section class="sidebar">
+            <div class="sidebar__header">
+                <h4>Discord Clone</h4>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <div class="sidebar__channels">
+                <div class="sidebar__channelsHeader">
+                    <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
+                    <div class="channel__header">
+                        <h5>topics</h5>
+                    </div>
+                </div>
+                <div class="sideber__channelList logged-in" style="display: none;">
+                    <li id="general">
+                        # general
+                    </li>
+                    <li id="music">
+                        # music
+                    </li>
+                    <li id="gaming">
+                        # gaming
+                    </li>
+                    <li id="blackpink">
+                        # blackpink
+                    </li>
+                </div>
+            </div>
+
+            <div class="sidebar__profile modal-trigger logged-in" style="display: none;" data-target="modal-account">
+                <div class="profile__info">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/discord-clone-2bf4b.appspot.com/o/pp1.jpg?alt=media&token=39f1185b-86d5-4014-a529-9354cc7dd849" alt="Profile Picture">
+                    <h6>Anon</h6>
+                </div>
+                <div class="profile__tools">
+                    <!-- <i class="fas fa-microphone-alt"></i>
+                    <i class="fas fa-headphones-alt"></i>
+                    <i class="fas fa-cog"></i> -->
+                </div>
+            </div>
+
+        </section>
+
+        <section class="chat__page">  
+            <header class="chat__pageHeader">
+                <div class="header__leftSide">
+                    <i class="fas fa-hashtag"></i>
+                    <h4>pick channel</h4>
+                </div>
+                <div class="header__rightSide">
+                    <i class="fas fa-jedi modal-trigger logged-out" style="display: none;" data-target="modal-signup"></i>
+                    <i class="fas fa-sign-in-alt modal-trigger logged-out" style="display: none;" data-target="modal-login"></i>
+                    <i class="fas fa-sign-out-alt logged-in" style="display: none;" id="logout"></i>
+                </div>
+            </header>
+
+            <!-- sign up modal -->
+            <div id="modal-signup" class="modal grey darken-3">
+                <div class="modal-content">
+                    <h4 class="text-lighten-4 pink-text">Sign up</h4><br>
+                    <form action="" id="signup-form">
+                        <div class="input-field">
+                            <input type="email" class="white-text" id="signup-email" required />
+                            <label for="signup-email">Email address</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="white-text" id="signup-password" required />
+                            <label for="signup-password">Choose password</label>
+                        </div>
+                        <button class="btn pink accent-1 darken-2 z-depth-0">Sign up</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- login modal -->
+            <div id="modal-login" class="modal grey darken-3">
+                <div class="modal-content">
+                <h4 class="text-lighten-4 pink-text">Login</h4><br />
+                <form id="login-form">
+                    <div class="input-field">
+                        <input type="email" class="white-text" id="login-email" required />
+                        <label for="login-email">Email address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="white-text" id="login-password" required />
+                        <label for="login-password">Your password</label>
+                    </div>
+                    <div class="input-field">
+                        <p style="display: none;" class="login__err red-text">check your email / password</p>
+                    </div>
+                    <button class="btn pink accent-1 z-depth-0">Login</button>
+                </form>
+                </div>
+            </div>
+
+            <!-- account modal -->
+            <div id="modal-account" class="modal pink lighten-4 col-s12">
+                <div class="modal-content center-align">
+                    <h4 class="white-text">Account Details</h4><br />
+                    <div class="row valign-wrapper">
+                        <div class="col s4">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/discord-clone-2bf4b.appspot.com/o/pp1.jpg?alt=media&token=39f1185b-86d5-4014-a529-9354cc7dd849" alt="Profile Picture" class="circle responsive-img"> <!-- notice the "circle" class -->
+                          </div>
+                        <div class="col s8 account__details"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat__pageList logged-in" style="display: none;">
+                <ul>
+                </ul>
+            </div>
+
+            <div class="chat__messageForm logged-in" style="display: none;">
+                <form action="">
+                    <div class="input-field col s12">
+                        <input class="message__input" type="text" placeholder="message here..." name="input__message">
+                    </div>  
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.9.0/date_fns.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyASFWWbhJVaE28AyYcjVlcdMELddpot6Po",
+            authDomain: "discord-clone-2bf4b.firebaseapp.com",
+            projectId: "discord-clone-2bf4b",
+            appId: "1:762599672207:web:67f197ed59719676cb23fa",
+            measurementId: "G-Y3WVE5QXWC"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // define variable for firestore and make auth
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        // update firestore settings
+        db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="assets/bundle.js"></script>
+</body>
+</html>
